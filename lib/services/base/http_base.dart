@@ -31,4 +31,27 @@ class HttpBase {
       body: jsonEncode(data),
     );
   }
+
+  /// PUT isteği yapar.
+  Future<http.Response> put(ApiRoutes route, String id, Map<String, dynamic> data) async {
+    return http.put(
+      Uri.parse('${route.url}/$id'),
+      headers: headers,
+      body: jsonEncode(data),
+    );
+  }
+
+  /// PATCH isteği yapar.
+  Future<http.Response> patch(ApiRoutes route, String id, Map<String, dynamic> data) async {
+    return http.patch(
+      Uri.parse('${route.url}/$id'),
+      headers: headers,
+      body: jsonEncode(data),
+    );
+  }
+
+  /// DELETE isteği yapar.
+  Future<http.Response> delete(ApiRoutes route, String id) async {
+    return http.delete(Uri.parse('${route.url}/$id'), headers: headers);
+  }
 }

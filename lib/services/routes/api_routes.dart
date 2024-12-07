@@ -3,6 +3,7 @@ import 'package:todolist/services/constants/api_constants.dart';
 enum ApiRoutes {
   login,
   register,
+  tasks,
 }
 
 extension ApiRoutesExtension on ApiRoutes {
@@ -12,12 +13,14 @@ extension ApiRoutesExtension on ApiRoutes {
         return '/login';
       case ApiRoutes.register:
         return '/register';
+      case ApiRoutes.tasks:
+        return '/tasks';
     }
   }
 
   /// ApiRoutes'e göre url oluşturur.
   String get url {
-    return '${ApiConstants.baseUrl}/api/parents$route';
+    return '${ApiConstants.baseUrl}/$route';
   }
 
   /// ApiRoutes'e göre uri oluşturur.
