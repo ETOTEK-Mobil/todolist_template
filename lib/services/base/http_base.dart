@@ -2,20 +2,20 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:todolist/services/routes/api_routes.dart';
-import 'package:todolist/services/shared_prefs_service.dart';
 
 /// HTTP isteklerini yönetmek için temel bir sınıf. Bu temel sınıf sayesinde tokenları tekrar tekrar yazmamız gerekmez.
 class HttpBase {
   /// HTTP isteklerinde kullanılacak header'lar
-  final Map<String, String> headers;
+  final Map<String, String> headers = {'Content-Type': 'application/json'};
 
-  final userToken = SharedPrefsService().token;
+  /// Giriş yapıldığında bu fonksiyon çağrılır ve token eklenir.
+  Future<void> loginToken(String token) async {
+    headers['Authorization'] = 'Bearer $token';
+  }
 
-  HttpBase({this.headers = const {'Content-Type': 'application/json'}}) {
-    // Eğer giriş yapılmışsa header'a ekler.
-    if (userToken != null) {
-      headers['Authorization'] = 'Bearer $userToken';
-    }
+  /// Çıkış yapıldığında bu fonksiyon çağrılır ve token silinir.
+  Future<void> logoutToken() async {
+    headers.remove('Authorization');
   }
 
   /// GET isteği yapar.
