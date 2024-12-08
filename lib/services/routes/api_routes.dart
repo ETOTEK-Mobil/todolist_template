@@ -20,7 +20,7 @@ extension ApiRoutesExtension on ApiRoutes {
 
   /// ApiRoutes'e göre url oluşturur.
   String get url {
-    return '${ApiConstants.baseUrl}/$route';
+    return '${ApiConstants.baseUrl}$route';
   }
 
   /// ApiRoutes'e göre uri oluşturur.
